@@ -1,15 +1,18 @@
 import { Camera, CameraType } from 'expo-camera'
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, Button, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, Button, StyleSheet, Dimensions } from 'react-native'
+import { useWindowDimensions } from 'react-native'
 
-async function setAspectRatio() {
-    // Get the supported aspect ratios
-    const supportedRatios = await Camera.getSupportedRatiosAsync();
-}
+
 
 const CameraComponent = () => {
     const [type, setType] = useState(CameraType.back)
-    const [permission, requestPermission] = Camera.useCameraPermissions();
+    const [permission, requestPermission] = Camera.useCameraPermissions
+        ();
+
+
+
+
 
     if (!permission) {
         // Camera permissions are still loading
@@ -38,6 +41,7 @@ const CameraComponent = () => {
             <Camera style={styles.camera} type={type}>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
+                        <Text style={styles.text}>Flip Camera</Text>
                     </TouchableOpacity>
                 </View>
             </Camera>
